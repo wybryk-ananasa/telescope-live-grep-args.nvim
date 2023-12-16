@@ -22,6 +22,13 @@ function concat( t1, t2 )
     return t1
 end
 
+function replace( str )
+    local result = str:gsub( "\"", "\\\"" )
+    result = result:gsub( "(", "\\(" )
+    result = result:gsub( ")", "\\)" )
+    return result
+end
+
 M.parse = function( prompt, autoquote )
     if string.len( prompt ) == 0 then
         return {}
@@ -32,12 +39,11 @@ M.parse = function( prompt, autoquote )
 
     if pattern and params then
         local params = split_string( params, " " )
-        pattern = pattern:gsub( "\"", ".*" ) 
-        table.insert( parts, pattern )
+        pattern = pattern:gsub( "\"", ".*" )
+        table.insert( parts, replace( pattern ) )
         concat( parts, params )
     else
-        local pattern = prompt:gsub( "\"", ".*" ) 
-        table.insert( parts, pattern )
+        table.insert( parts, replace( pattern ) )
     end
 
     for i, part in ipairs( parts ) do
