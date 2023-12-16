@@ -27,17 +27,15 @@ M.parse = function( prompt, autoquote )
         return {}
     end
 
-    local separator = " -- "
-    local parts = split_string( prompt, separator )
+    local pattern, params = string.match(prompt, "(.*)%s%-%-%s(.*)")
+    local parts  = {}
 
-    if #parts > 1 then
-        local second = table.remove( parts, 2 )
-        local params = split_string( second, " " )
+    if pattern and params then
+        local params = split_string( params, " " )
+        table.insert( parts, pattern )
         concat( parts, params )
-    end
-
-    for i, part in ipairs( parts ) do
-        print( "part " .. tostring( i ) .. ": " .. part )
+    else
+        table.insert( parts, prompt )
     end
 
     return parts
