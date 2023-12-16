@@ -36,6 +36,10 @@ M.parse = function( prompt, autoquote )
         concat( parts, params )
     end
 
+    for i, part in ipairs( parts ) do
+        print( "part " .. tostring( i ) .. ": " .. part )
+    end
+
     return parts
 end
 
