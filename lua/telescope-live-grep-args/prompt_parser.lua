@@ -38,10 +38,6 @@ M.parse = function( prompt, autoquote )
         table.insert( parts, prompt )
     end
 
-    for i, part in ipairs( parts ) do
-        print( "part " .. tostring(i) .. ": " .. part )
-    end
-
     return parts
 end
 
