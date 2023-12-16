@@ -24,8 +24,8 @@ end
 
 function replace( str )
     local result = str:gsub( "\"", "\\\"" )
-    result = result:gsub( "(", "\\(" )
-    result = result:gsub( ")", "\\)" )
+    result = result:gsub( "%(", "\\(" )
+    result = result:gsub( "%)", "\\)" )
     return result
 end
 
