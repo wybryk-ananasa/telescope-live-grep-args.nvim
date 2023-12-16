@@ -27,19 +27,19 @@ M.parse = function( prompt, autoquote )
         return {}
     end
 
-    local pattern, params = string.match(prompt, "(.*)%s%-%-%s(.*)")
-    local parts  = {}
+    local pattern, params = string.match( prompt, "(.*)%s%-%-%s(.*)" )
+    local parts = {}
 
     if pattern and params then
         local params = split_string( params, " " )
-        table.insert( parts, pattern )
+        table.insert( parts, pattern:gsub( "\"", ".*" ) )
         concat( parts, params )
     else
-        table.insert( parts, prompt )
+        table.insert( parts, prompt:gsub( "\"", ".*" ) )
     end
 
     for i, part in ipairs( parts ) do
-        print( "part " .. tostring(i) .. ": " .. part )
+        print( "part " .. tostring( i ) .. ": " .. part )
     end
 
     return parts
