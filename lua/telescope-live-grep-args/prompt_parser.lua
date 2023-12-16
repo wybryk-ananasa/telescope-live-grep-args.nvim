@@ -23,7 +23,7 @@ function concat( t1, t2 )
 end
 
 function replace( str )
-    local result = str:gsub( "\"", "\\\"" )
+    local result = str:gsub( "\"", ".*" )
     result = result:gsub( "%(", "\\(" )
     result = result:gsub( "%)", "\\)" )
     return result
