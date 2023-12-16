@@ -32,10 +32,12 @@ M.parse = function( prompt, autoquote )
 
     if pattern and params then
         local params = split_string( params, " " )
-        table.insert( parts, pattern:gsub( "\"", ".*" ) )
+        pattern = pattern:gsub( "\"", ".*" ) 
+        table.insert( parts, pattern )
         concat( parts, params )
     else
-        table.insert( parts, prompt:gsub( "\"", ".*" ) )
+        local pattern = prompt:gsub( "\"", ".*" ) 
+        table.insert( parts, pattern )
     end
 
     for i, part in ipairs( parts ) do
